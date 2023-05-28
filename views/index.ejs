@@ -1,0 +1,51 @@
+<%- include("partials/header") %>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg py-3" style="background-color: #6624ea;">
+    <div class="container">
+        
+        <a href="#" class="navbar-brand text-light">
+            <img src="images/task.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Task Management Application
+        </a>
+
+</nav>
+
+<!-- login section -->
+<section class="p-5 text-dark text-center text-dark">
+    <div class="container">
+        <div class="row g-4 justify-content-center align-items-center">
+            <div class="col-lg-9 col-xl-6">
+                <div class="card">
+                    <div class="card-body p-4 p-md-5">
+
+                       <img src="images/task.jpg" class="d-inline-block align-top" alt="" width="40" height="40">
+                        <h3 class="p-4">Welcome to our App!</h3>
+
+                        <%  newListItems.forEach(function(item){ %>
+                        <form action="/delete" method="post">
+                            <div class="item d-flex align-items-center">
+                              <input  type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()"> 
+                                <p><%= item.name %></p> 
+                            </div>
+                            <input type="hidden" name="listName" value="<%=listTitle%>"></input>
+                      </form>
+                      <%  }) %>
+
+
+                      <form class="item d-flex align-items-center" action="/" method="post">
+                        <input type="text" name="itemName" placeholder="New Item" autocomplete="off">
+                        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+                      </form>
+
+                    </div>                    
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>
